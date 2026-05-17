@@ -93,12 +93,17 @@ async function uploadToCloudinary(file) {
 
   const timestamp = Math.floor(Date.now() / 1000).toString();
   const folder = 'docshare';
+
+  // ✅ FIX 1: params must be alphabetically sorted
   const paramsToSign = `folder=${folder}&timestamp=${timestamp}`;
+
+  // ✅ FIX 2: Cloudinary requires SHA-1, not SHA-256
   const signature = crypto
-    .createHash('sha256')
+    .createHash('sha1')
     .update(paramsToSign + apiSecret)
     .digest('hex');
 
+  // ✅ FIX 3: resource_type removed from body (it belongs in the URL path only)
   const body = new URLSearchParams({
     file: dataUri,
     timestamp,
@@ -107,7 +112,6 @@ async function uploadToCloudinary(file) {
     folder,
     use_filename: 'true',
     unique_filename: 'true',
-    resource_type: 'auto',
   });
 
   return new Promise((resolve, reject) => {
