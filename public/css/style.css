@@ -1,0 +1,458 @@
+/* ============================================================
+   DocShare — style.css
+   Minimal, clean, warm-neutral palette.
+   Uses DM Mono (monospace) + DM Sans (sans-serif).
+============================================================ */
+
+/* ── Custom Properties (CSS Variables) ── */
+:root {
+  --bg:        #f5f3ef;       /* warm off-white background */
+  --surface:   #ffffff;       /* card / panel white */
+  --border:    #e2dfd9;       /* soft border */
+  --text:      #1a1916;       /* near-black text */
+  --muted:     #8c8880;       /* secondary / placeholder text */
+  --accent:    #2563eb;       /* blue — primary action */
+  --accent-h:  #1d4ed8;       /* blue hover */
+  --danger:    #dc2626;       /* red — delete */
+  --danger-h:  #b91c1c;
+  --success:   #16a34a;
+  --radius:    10px;
+  --shadow:    0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ── Utility ── */
+.hidden { display: none !important; }
+
+/* ============================================================
+   LOGIN SCREEN
+============================================================ */
+#login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.logo-icon {
+  font-size: 22px;
+  color: var(--accent);
+}
+.logo-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+/* ── Password Input Row ── */
+.input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+}
+.input-group input:focus {
+  border-color: var(--accent);
+}
+
+#login-btn {
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s;
+}
+#login-btn:hover { background: var(--accent-h); }
+
+.error-msg {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--danger);
+}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logout-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+}
+.logout-btn:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+/* ============================================================
+   DASHBOARD LAYOUT
+============================================================ */
+.dashboard {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   UPLOAD SECTION
+============================================================ */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 36px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  user-select: none;
+}
+.drop-zone:hover,
+.drop-zone.drag-over {
+  border-color: var(--accent);
+  background: #eff6ff;
+}
+
+.drop-icon {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+.drop-zone p {
+  font-size: 15px;
+  color: var(--text);
+}
+.drop-hint {
+  font-size: 12px !important;
+  color: var(--muted) !important;
+  margin-top: 4px !important;
+}
+
+/* ── Selected file row ── */
+.selected-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.selected-file span {
+  font-size: 14px;
+  font-family: 'DM Mono', monospace;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-btn {
+  flex-shrink: 0;
+  padding: 8px 18px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s;
+}
+.upload-btn:hover { background: var(--accent-h); }
+.upload-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ── Status message ── */
+.upload-status {
+  margin-top: 12px;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-align: center;
+}
+.upload-status.success { background: #f0fdf4; color: var(--success); }
+.upload-status.error   { background: #fef2f2; color: var(--danger); }
+.upload-status.loading { background: #eff6ff; color: var(--accent); }
+
+/* ============================================================
+   FILES LIST
+============================================================ */
+.files-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.files-header .section-title { margin-bottom: 0; }
+
+.refresh-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1;
+  transition: all .15s;
+}
+.refresh-btn:hover { color: var(--text); border-color: var(--text); }
+
+.loading-msg,
+.empty-msg {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Individual file row ── */
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  transition: border-color .15s;
+}
+.file-item:hover { border-color: #c5c1bb; }
+
+.file-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+
+.file-info {
+  flex: 1;
+  overflow: hidden;
+}
+.file-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.file-date {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.file-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Shared action button base */
+.btn-action {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s;
+}
+
+/* Download button — outlined */
+.btn-download {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-download:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Delete button — subtle red */
+.btn-del {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+}
+.btn-del:hover {
+  background: #fef2f2;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ============================================================
+   CONFIRM DELETE MODAL
+============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+.modal-box {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,.15);
+}
+.modal-box p {
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.btn-cancel {
+  padding: 9px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background .15s;
+}
+.btn-cancel:hover { background: var(--bg); }
+
+.btn-delete {
+  padding: 9px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--danger);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background .15s;
+}
+.btn-delete:hover { background: var(--danger-h); }
+
+/* ============================================================
+   RESPONSIVE — phones
+============================================================ */
+@media (max-width: 480px) {
+  .login-card { padding: 36px 24px; }
+  .card { padding: 20px 16px; }
+
+  /* Stack file action buttons vertically on very small screens */
+  .file-item { flex-wrap: wrap; }
+  .file-actions { width: 100%; justify-content: flex-end; margin-top: 4px; }
+}
