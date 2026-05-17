@@ -94,8 +94,8 @@ async function uploadToCloudinary(file) {
   const timestamp = Math.floor(Date.now() / 1000).toString();
   const folder = 'docshare';
 
-  // ✅ FIX 1: params must be alphabetically sorted
-  const paramsToSign = `folder=${folder}&timestamp=${timestamp}`;
+  // ✅ FIX 1: ALL params in body must be included, alphabetically sorted
+  const paramsToSign = `folder=${folder}&timestamp=${timestamp}&unique_filename=true&use_filename=true`;
 
   // ✅ FIX 2: Cloudinary requires SHA-1, not SHA-256
   const signature = crypto
